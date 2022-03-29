@@ -2,3 +2,9 @@ table {
     float: right;
     width: 300px
 }
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}

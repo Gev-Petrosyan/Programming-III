@@ -60,7 +60,7 @@ function generator(grass, grassEater, manster, whoter, lava, matrixSize) {
     }
 }
 
-generator(55, 15, 4, 1, 1, 32);
+generator(45, 16, 4, 1, 1, 28);
 
 function creatingObjects() {
     for (var y = 0; y < matrix.length; y++) {
@@ -107,20 +107,61 @@ function weather() {
 
 setInterval(weather, 24000);
 
+// function game() {
+//     if (weath != undefined) {
+//         for (var i in grassArr) {
+//             grassArr[i].mul();
+//         }
+//         for (var i in grassEaterArr) {
+//             grassEaterArr[i].eat();
+//         }
+//         for (var i in mansterArr) {
+//             mansterArr[i].eat();
+//         }
+//         for (var i in whoterArr) {
+//             whoterArr[i].mul();
+//         }
+//         for (var i in lavaArr) {
+//             lavaArr[i].mul();
+//         }
+//     }
+
+//     let sendData = {
+//         matrix: matrix,
+//         grassCounter: grassArr.length,
+//         grassEaterCounter: grassEaterArr.length,
+//         mansterCounter: mansterArr.length,
+//         whoterCounter: whoterArr.length,
+//         lavaCounter: lavaArr.length
+//     }
+
+//     io.sockets.emit("data", sendData);
+// }
+
 function game() {
-    if (weath != 'autumn') {
-        for (var i in grassArr) {
-            grassArr[i].mul();
-        }
+    if (grassArr[0] !== undefined) {
+        // if(weath != 'autumn') {
+            for (var i in grassArr) {
+                grassArr[i].mul();
+            }
+        // }
+    }
+    if (grassEaterArr[0] !== undefined) {
         for (var i in grassEaterArr) {
             grassEaterArr[i].eat();
         }
+    }
+    if (mansterArr[0] !== undefined) {
         for (var i in mansterArr) {
             mansterArr[i].eat();
         }
+    }
+    if (whoterArr[0] !== undefined) {
         for (var i in whoterArr) {
             whoterArr[i].mul();
         }
+    }
+    if (lavaArr[0] !== undefined) {
         for (var i in lavaArr) {
             lavaArr[i].mul();
         }
@@ -140,15 +181,110 @@ function game() {
 
 setInterval(game, 1000)
 
-function kill() {
-    grassArr = [];
-    grassEaterArr = [];
-    meatEaterArr = [];
-    allEaterArr = [];
-    hunterArr = [];
+function killGrass() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-            matrix[y][x] = 0;
+            if (matrix[y][x] == 1) {
+                matrix[y][x] = 0;
+            }
+        }
+    }
+}
+
+function killGrassEater() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] == 2) {
+                matrix[y][x] = 0;
+            }
+        }
+    }
+}
+
+function killManster() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] == 3) {
+                matrix[y][x] = 0;
+            }
+        }
+    }
+}
+
+function killWhoter() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] == 4) {
+                matrix[y][x] = 0;
+            }
+        }
+    }
+}
+
+function killLava() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            if (matrix[y][x] == 5) {
+                matrix[y][x] = 0;
+            }
+        }
+    }
+}
+
+function addGrass() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            if (matrix == 0) {
+                matrix[y][x] = 1;
+            }
+        }
+    }
+}
+
+function addGrassEater() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            let randomOne = Math.floor(Math.random() * 10);
+            let randomTwo = Math.floor(Math.random() * 10);
+            if (randomOne == randomTwo) {
+                matrix[y][x] = 2;
+            }
+        }
+    }
+}
+
+function addManster() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            let randomOne = Math.floor(Math.random() * 10);
+            let randomTwo = Math.floor(Math.random() * 10);
+            if (randomOne == randomTwo) {
+                matrix[y][x] = 3;
+            }
+        }
+    }
+}
+
+function addWhoter() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            let randomOne = Math.floor(Math.random() * 10);
+            let randomTwo = Math.floor(Math.random() * 10);
+            if (randomOne == randomTwo) {
+                matrix[y][x] = 4;
+            }
+        }
+    }
+}
+
+function addLava() {
+    for (var y = 0; y < matrix.length; y++) {
+        for (var x = 0; x < matrix[y].length; x++) {
+            let randomOne = Math.floor(Math.random() * 10);
+            let randomTwo = Math.floor(Math.random() * 10);
+            if (randomOne == randomTwo) {
+                matrix[y][x] = 5;
+            }
         }
     }
 }
@@ -156,7 +292,17 @@ function kill() {
 
 io.on('connection', function (socket) {
     creatingObjects();
-    socket.on("kill", kill);
+    socket.on("killGrass", killGrass);
+    socket.on("killGrassEater", killGrassEater);
+    socket.on("killManster", killManster);
+    socket.on("killWhoter", killWhoter);
+    socket.on("killLava", killLava);
+
+    socket.on("addGrass", addGrass);
+    socket.on("addGrassEater", addGrassEater);
+    socket.on("addManster", addManster);
+    socket.on("addWhoter", addWhoter);
+    socket.on("addLava", addLava);
 });
 
 var statistics = {};

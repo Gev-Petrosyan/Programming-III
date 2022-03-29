@@ -40,7 +40,7 @@ function setup() {
                         fill("green");
                     }
                     else if (weath == "winter") {
-                        fill("withe");
+                        fill("white");
                     }
                     else if (weath == "autumn") {
                         fill("#ffd426");
@@ -56,6 +56,18 @@ function setup() {
                     fill('red');
                     rect(j * side, i * side, side, side);
                 } else if (matrix[i][j] == 4) {
+                    if (weath == "spring") {
+                        fill("#4287f5");
+                    }
+                    else if (weath == "summer") {
+                        fill("#4287f5");
+                    }
+                    else if (weath == "winter") {
+                        fill("#1ab4d6");
+                    }
+                    else if (weath == "autumn") {
+                        fill("#4287f5");
+                    }
                     fill('#4287f5');
                     rect(j * side, i * side, side, side);
                 } else if (matrix[i][j] == 5) {
@@ -67,6 +79,42 @@ function setup() {
     }
 }
 
-function kill() {
-    socket.emit("kill");
+function killGrass() {
+    socket.emit("killGrass");
+}
+
+function killGrassEater() {
+    socket.emit("killGrassEater");
+}
+
+function killManster() {
+    socket.emit("killManster");
+}
+
+function killWhoter() {
+    socket.emit("killWhoter");
+}
+
+function killLava() {
+    socket.emit("killLava");
+}
+
+function addGrass() {
+    socket.emit("addGrass");
+}
+
+function addGrassEater() {
+    socket.emit("addGrassEater");
+}
+
+function addManster() {
+    socket.emit("addManster");
+}
+
+function addWhoter() {
+    socket.emit("addWhoter");
+}
+
+function addLava() {
+    socket.emit("addLava");
 }
