@@ -4,7 +4,7 @@ var socket = io();
 function setup() {
     var weath = 'winter';
 
-    var side = 25;
+    var side = 24;
 
     var matrix = [];
 
@@ -79,24 +79,8 @@ function setup() {
     }
 }
 
-function killGrass() {
-    socket.emit("killGrass");
-}
-
-function killGrassEater() {
-    socket.emit("killGrassEater");
-}
-
-function killManster() {
-    socket.emit("killManster");
-}
-
-function killWhoter() {
-    socket.emit("killWhoter");
-}
-
-function killLava() {
-    socket.emit("killLava");
+function kill() {
+    socket.emit("kill");
 }
 
 function addGrass() {

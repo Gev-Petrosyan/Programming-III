@@ -60,7 +60,7 @@ function generator(grass, grassEater, manster, whoter, lava, matrixSize) {
     }
 }
 
-generator(45, 16, 4, 1, 1, 28);
+generator(50, 20, 5, 1, 1, 28);
 
 function creatingObjects() {
     for (var y = 0; y < matrix.length; y++) {
@@ -107,44 +107,11 @@ function weather() {
 
 setInterval(weather, 24000);
 
-// function game() {
-//     if (weath != undefined) {
-//         for (var i in grassArr) {
-//             grassArr[i].mul();
-//         }
-//         for (var i in grassEaterArr) {
-//             grassEaterArr[i].eat();
-//         }
-//         for (var i in mansterArr) {
-//             mansterArr[i].eat();
-//         }
-//         for (var i in whoterArr) {
-//             whoterArr[i].mul();
-//         }
-//         for (var i in lavaArr) {
-//             lavaArr[i].mul();
-//         }
-//     }
-
-//     let sendData = {
-//         matrix: matrix,
-//         grassCounter: grassArr.length,
-//         grassEaterCounter: grassEaterArr.length,
-//         mansterCounter: mansterArr.length,
-//         whoterCounter: whoterArr.length,
-//         lavaCounter: lavaArr.length
-//     }
-
-//     io.sockets.emit("data", sendData);
-// }
-
 function game() {
     if (grassArr[0] !== undefined) {
-        // if(weath != 'autumn') {
-            for (var i in grassArr) {
-                grassArr[i].mul();
-            }
-        // }
+        for (var i in grassArr) {
+            grassArr[i].mul();
+        }
     }
     if (grassEaterArr[0] !== undefined) {
         for (var i in grassEaterArr) {
@@ -181,50 +148,12 @@ function game() {
 
 setInterval(game, 1000)
 
-function killGrass() {
+function kill() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 1) {
-                matrix[y][x] = 0;
-            }
-        }
-    }
-}
-
-function killGrassEater() {
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 2) {
-                matrix[y][x] = 0;
-            }
-        }
-    }
-}
-
-function killManster() {
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 3) {
-                matrix[y][x] = 0;
-            }
-        }
-    }
-}
-
-function killWhoter() {
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 4) {
-                matrix[y][x] = 0;
-            }
-        }
-    }
-}
-
-function killLava() {
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 5) {
+            let randomOne = Math.floor(Math.random() * 1.5);
+            let randomTwo = Math.floor(Math.random() * 1.5);
+            if (randomOne == randomTwo) {
                 matrix[y][x] = 0;
             }
         }
@@ -234,7 +163,9 @@ function killLava() {
 function addGrass() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix == 0) {
+            let randomOne = Math.floor(Math.random() * 50);
+            let randomTwo = Math.floor(Math.random() * 50);
+            if (randomOne == randomTwo) {
                 matrix[y][x] = 1;
             }
         }
@@ -244,8 +175,8 @@ function addGrass() {
 function addGrassEater() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-            let randomOne = Math.floor(Math.random() * 10);
-            let randomTwo = Math.floor(Math.random() * 10);
+            let randomOne = Math.floor(Math.random() * 50);
+            let randomTwo = Math.floor(Math.random() * 50);
             if (randomOne == randomTwo) {
                 matrix[y][x] = 2;
             }
@@ -256,8 +187,8 @@ function addGrassEater() {
 function addManster() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-            let randomOne = Math.floor(Math.random() * 10);
-            let randomTwo = Math.floor(Math.random() * 10);
+            let randomOne = Math.floor(Math.random() * 50);
+            let randomTwo = Math.floor(Math.random() * 50);
             if (randomOne == randomTwo) {
                 matrix[y][x] = 3;
             }
@@ -268,8 +199,8 @@ function addManster() {
 function addWhoter() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-            let randomOne = Math.floor(Math.random() * 10);
-            let randomTwo = Math.floor(Math.random() * 10);
+            let randomOne = Math.floor(Math.random() * 100);
+            let randomTwo = Math.floor(Math.random() * 100);
             if (randomOne == randomTwo) {
                 matrix[y][x] = 4;
             }
@@ -280,8 +211,8 @@ function addWhoter() {
 function addLava() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
-            let randomOne = Math.floor(Math.random() * 10);
-            let randomTwo = Math.floor(Math.random() * 10);
+            let randomOne = Math.floor(Math.random() * 100);
+            let randomTwo = Math.floor(Math.random() * 100);
             if (randomOne == randomTwo) {
                 matrix[y][x] = 5;
             }
@@ -292,12 +223,7 @@ function addLava() {
 
 io.on('connection', function (socket) {
     creatingObjects();
-    socket.on("killGrass", killGrass);
-    socket.on("killGrassEater", killGrassEater);
-    socket.on("killManster", killManster);
-    socket.on("killWhoter", killWhoter);
-    socket.on("killLava", killLava);
-
+    socket.on("kill", kill);
     socket.on("addGrass", addGrass);
     socket.on("addGrassEater", addGrassEater);
     socket.on("addManster", addManster);

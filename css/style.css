@@ -1,10 +1,14 @@
-table {
-    float: right;
-    width: 300px
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center
+h2 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 40px;
 }

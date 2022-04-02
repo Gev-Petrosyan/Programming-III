@@ -35,7 +35,7 @@ module.exports = class Grass {
         let emptycells = this.chooseCell(0);
         let newCell = emptycells[Math.floor(Math.random()*emptycells.length)];
         if (this.multiplay >= 5 && newCell) {
-            const newGrass = new Grass(newCell[0], newCell[1], 1)
+            const newGrass = new Grass(newCell[0], newCell[1])
             grassArr.push(newGrass);
             matrix[newCell[1]][newCell[0]] = 1;
             this.muplitplay = 0;

@@ -34,8 +34,8 @@ module.exports = class Whoter {
     mul(){
         let emptycells = this.chooseCell(0);
         let newCell = emptycells[Math.floor(Math.random()*emptycells.length)];
-        if (this.multiplay >= 125 && newCell) {
-            const newWhoter = new Whoter(newCell[0], newCell[1], 4)
+        if (this.multiplay >= 45 && newCell) {
+            const newWhoter = new Whoter(newCell[0], newCell[1])
             whoterArr.push(newWhoter);
             matrix[newCell[1]][newCell[0]] = 4;
             this.muplitplay = 0;

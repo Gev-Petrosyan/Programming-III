@@ -32,10 +32,10 @@ module.exports = class Lava {
     }
 
     mul(){
-        let emptycells = this.chooseCell(0 || 1 || 2 || 3 || 4);
+        let emptycells = this.chooseCell(1);
         let newCell = emptycells[Math.floor(Math.random()*emptycells.length)];
-        if (this.multiplay >= 75 && newCell) {
-            const newLava = new Lava(newCell[0], newCell[1], 5)
+        if (this.multiplay >= Math.floor(Math.random()*200) && newCell) {
+            const newLava = new Lava(newCell[0], newCell[1])
             lavaArr.push(newLava);
             matrix[newCell[1]][newCell[0]] = 5;
             this.muplitplay = 0;

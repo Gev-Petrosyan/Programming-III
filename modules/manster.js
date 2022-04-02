@@ -42,14 +42,14 @@ module.exports = class Manster {
         if(newCell && this.energy >= 2) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY] [newX] = 3;
+            matrix[newY][newX] = 3;
             mansterArr.push(new Manster(newX, newY));
             this.energy = 1;
         }
     }
     
     eat() {
-        let emptycells = this.chooseCell(2 || 4);
+        let emptycells = this.chooseCell(2);
         let newCell = emptycells[Math.floor(Math.random()*emptycells.length)];
 
         if (newCell) {
@@ -80,7 +80,7 @@ module.exports = class Manster {
 
 
     move() {
-        let emptycells = this.chooseCell(0 || 1);
+        let emptycells = this.chooseCell(1);
         let newCell = emptycells[Math.floor(Math.random()*emptycells.length)];
         
 
@@ -89,7 +89,7 @@ module.exports = class Manster {
             var newY = newCell[1];
             matrix[newY] [newX] = 3;
 
-            matrix[this.y] [this.x] = 0 || 1;
+            matrix[this.y] [this.x] = 1;
 
             this.x = newX;
             this.y = newY;
